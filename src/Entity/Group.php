@@ -24,7 +24,7 @@ class Group
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
      */
     private $users;
 
