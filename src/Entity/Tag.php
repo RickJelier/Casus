@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,5 +18,66 @@ class Tag
      */
     private $id;
 
-    // add your own fields
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="tags")
+     */
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project)
+    {
+        if ($this->projects->contains($project)) {
+            return;
+        }
+
+        $this->projects[] = $project;
+        $project->addTag($this);
+    }
+
+    public function removeProject(Project $project)
+    {
+        $this->projects->removeElement($project);
+        $project->removeTag($this);
+    }
 }

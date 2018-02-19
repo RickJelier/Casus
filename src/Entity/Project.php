@@ -27,15 +27,21 @@ class Project
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdProjects")
      */
     private $createdByUser;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="projects")
      */
     private $users;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="projects")
+     */
+    private $tags;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -100,5 +106,29 @@ class Project
     {
         $this->users->removeElement($user);
         $user->removeProject($this);
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        if ($this->tags->contains($tag)) {
+            return;
+        }
+
+        $this->tags[] = $tag;
+        $tag->addProject($this);
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+        $tag->removeProject($this);
     }
 }
