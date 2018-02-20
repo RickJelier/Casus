@@ -109,8 +109,10 @@ class Project
 
     public function removeUser(User $user)
     {
-        $this->users->removeElement($user);
-        $user->removeProject($this);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeProject($this);
+        }
     }
 
     /**
@@ -133,7 +135,9 @@ class Project
 
     public function removeTag(Tag $tag)
     {
-        $this->tags->removeElement($tag);
-        $tag->removeProject($this);
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeProject($this);
+        }
     }
 }

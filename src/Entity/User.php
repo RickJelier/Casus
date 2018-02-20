@@ -154,8 +154,10 @@ class User
 
     public function removeDestination(Destination $destination)
     {
-        $this->destinations->removeElement($destination);
-        $destination->setUser(null);
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->setUser(null);
+        }
     }
 
     /**
@@ -178,8 +180,10 @@ class User
 
     public function removeNote(Note $note)
     {
-        $this->notes->removeElement($note);
-        $note->setUser(null);
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            $note->setUser(null);
+        }
     }
 
     /**
@@ -202,8 +206,10 @@ class User
 
     public function removeCreatedProject(Project $project)
     {
-        $this->createdProjects->removeElement($project);
-        $project->setCreatedByUser(null);
+        if ($this->createdProjects->contains($project)) {
+            $this->createdProjects->removeElement($project);
+            $project->setCreatedByUser(null);
+        }
     }
 
     /**
@@ -226,8 +232,10 @@ class User
 
     public function removeRole(Role $role)
     {
-        $this->roles->removeElement($role);
-        $role->removeUser($this);
+        if ($this->roles->contains($role)) {
+            $this->roles->removeElement($role);
+            $role->removeUser($this);
+        }
     }
 
     /**
@@ -250,8 +258,10 @@ class User
 
     public function removeGroup(ClassGroup $group)
     {
-        $this->groups->removeElement($group);
-        $group->removeUser($this);
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            $group->removeUser($this);
+        }
     }
 
     /**
@@ -274,7 +284,9 @@ class User
 
     public function removeProject(Project $project)
     {
-        $this->projects->removeElement($project);
-        $project->removeUser($this);
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
+            $project->removeUser($this);
+        }
     }
 }

@@ -82,7 +82,9 @@ class Tag
 
     public function removeProject(Project $project)
     {
-        $this->projects->removeElement($project);
-        $project->removeTag($this);
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
+            $project->removeTag($this);
+        }
     }
 }

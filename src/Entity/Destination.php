@@ -187,7 +187,9 @@ class Destination
 
     public function removeNote(Note $note)
     {
-        $this->notes->removeElement($note);
-        $note->setDestination(null);
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            $note->setDestination(null);
+        }
     }
 }

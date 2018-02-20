@@ -82,7 +82,9 @@ class ClassGroup
 
     public function removeUser(User $user)
     {
-        $this->users->removeElement($user);
-        $user->removeGroup($this);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeGroup($this);
+        }
     }
 }
