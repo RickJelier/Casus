@@ -10,15 +10,128 @@ easy_admin:
         # List the entity class name you want to manage
         Destination:
             class: App\Entity\Destination
+            new:
+                fields:
+                    - name
+                    - { property: 'link', type: 'url' }
+                    - username
+                    - password
+                    - token
+                    - user
+                    - { property: 'notes', type_options: { multiple: true, by_reference: false } }
+            list:
+                fields:
+                    - name
+                    - { property: 'link', type: 'url' }
+                    - username
+                    - token
+                    - user
+                    - notes
+            edit:
+                fields:
+                    - name
+                    - { property: 'link', type: 'url' }
+                    - username
+                    - password
+                    - token
+                    - user
+                    - { property: 'notes', type_options: { multiple: true, by_reference: false } }
         ClassGroup:
             class: App\Entity\ClassGroup
+            new:
+                fields:
+                    - name
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
+            list:
+                fields:
+                    - name
+                    - users
+            edit:
+                fields:
+                    - name
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
         Note:
             class: App\Entity\Note
         Project:
             class: App\Entity\Project
+            new:
+                fields:
+                    - name
+                    - tags
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
+                    - createdByUser
+            list:
+                fields:
+                    - name
+                    - tags
+                    - users
+                    - createdByUser
+            edit:
+                fields:
+                    - name
+                    - tags
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
+                    - createdByUser
         Role:
             class: App\Entity\Role
+            new:
+                fields:
+                    - name
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
+            list:
+                fields:
+                    - name
+                    - users
+            edit:
+                fields:
+                    - name
+                    - { property: 'users', type_options: { multiple: true, by_reference: false } }
         Tag:
             class: App\Entity\Tag
+            new:
+                fields:
+                    - name
+                    - { property: 'projects', type_options: { multiple: true, by_reference: false } }
+            list:
+                fields:
+                    - name
+                    - projects
+            edit:
+                fields:
+                    - name
+                    - { property: 'projects', type_options: { multiple: true, by_reference: false } }
         User:
             class: App\Entity\User
+            new:
+                fields:
+                    - name
+                    - email
+                    - password
+                    - { property: 'destinations', type_options: { multiple: true, by_reference: false } }
+                    - { property: 'notes', type_options: { multiple: true, by_reference: false } }
+                    - { property: 'createdProjects', type_options: { multiple: true, by_reference: false } }
+                    - roles
+                    - groups
+                    - projects
+            list:
+                fields:
+                    - name
+                    - email
+                    - password
+                    - destinations
+                    - notes
+                    - createdProjects
+                    - roles
+                    - groups
+                    - projects
+            edit:
+                fields:
+                    - name
+                    - email
+                    - password
+                    - { property: 'destinations', type_options: { multiple: true, by_reference: false } }
+                    - { property: 'notes', type_options: { multiple: true, by_reference: false } }
+                    - { property: 'createdProjects', type_options: { multiple: true, by_reference: false } }
+                    - roles
+                    - groups
+                    - projects
