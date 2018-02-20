@@ -26,7 +26,7 @@ class DataFixtures extends Fixture
 	{
 		$faker = Faker\Factory::create();
 
-		for ($i = 0; $i <= 100; $i++) {
+		for ($i = 0; $i <= 1000; $i++) {
 			$classGroup = new ClassGroup();
 			$destination = new Destination();
 			$note = new Note();

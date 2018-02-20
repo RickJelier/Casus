@@ -1,0 +1,35 @@
+label {
+    width: 600px;
+    height: 50px;
+    left: calc(50% - 300px);
+    position:absolute;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center
+}
+
+input {
+    width: 300px;
+    height: 50px;
+    top: 60px;
+    left: calc(50% - 150px);
+    position:absolute;
+    font-size: 50px
+}
+
+button {
+    left: calc(50% - 150px);
+    position: absolute;
+    top: 120px;
+    width: 307px;
+    height: 35px;
+}
+
+div.result {
+    display: none;
+    position: absolute;
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 100px;
+    top: 170px;
+}

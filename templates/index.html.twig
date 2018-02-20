@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <label for="query">How many records? (*1000)</label>
+    <input id="query" type="text" name="query">
+    <button>Submit</button>
+    <div class="result">
+        <span class="done">0</span> of <span class="total">0</span> done.
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('main.js') }}"></script>
+{% endblock %}
