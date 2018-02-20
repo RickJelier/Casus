@@ -8,10 +8,17 @@
 easy_admin:
     entities:
         # List the entity class name you want to manage
-        - App\Entity\Destination
-        - App\Entity\Group
-        - App\Entity\Note
-        - App\Entity\Project
-        - App\Entity\Role
-        - App\Entity\Tag
-        - App\Entity\User
+        Destination:
+            class: App\Entity\Destination
+        ClassGroup:
+            class: App\Entity\ClassGroup
+        Note:
+            class: App\Entity\Note
+        Project:
+            class: App\Entity\Project
+        Role:
+            class: App\Entity\Role
+        Tag:
+            class: App\Entity\Tag
+        User:
+            class: App\Entity\User

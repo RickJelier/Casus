@@ -44,6 +44,11 @@ class Project
         $this->tags = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @return mixed
      */

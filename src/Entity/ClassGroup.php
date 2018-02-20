@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClassGroupRepository")
  */
-class Group
+class ClassGroup
 {
     /**
      * @ORM\Id
@@ -31,6 +31,11 @@ class Group
     public function __construct()
     {
         $this->users = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**

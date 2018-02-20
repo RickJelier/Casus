@@ -24,13 +24,18 @@ class Tag
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="tags")
      */
     private $projects;
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**

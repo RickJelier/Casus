@@ -44,12 +44,17 @@ class User
     private $notes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="createdByUser")
+     */
+    private $createdProjects;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="ClassGroup", inversedBy="users")
      */
     private $groups;
 
@@ -62,9 +67,15 @@ class User
     {
         $this->destinations = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->createdProjects = new ArrayCollection();
         $this->roles = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->projects = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**
@@ -172,6 +183,30 @@ class User
     }
 
     /**
+     * @return Collection|Project[]
+     */
+    public function getCreatedProjects()
+    {
+        return $this->createdProjects;
+    }
+
+    public function addCreatedProject(Project $project)
+    {
+        if ($this->createdProjects->contains($project)) {
+            return;
+        }
+
+        $this->createdProjects[] = $project;
+        $project->setCreatedByUser($this);
+    }
+
+    public function removeCreatedProject(Project $project)
+    {
+        $this->createdProjects->removeElement($project);
+        $project->setCreatedByUser(null);
+    }
+
+    /**
      * @return Collection|Role[]
      */
     public function getRoles()
@@ -196,14 +231,14 @@ class User
     }
 
     /**
-     * @return Collection|Group[]
+     * @return Collection|ClassGroup[]
      */
     public function getGroups()
     {
         return $this->groups;
     }
 
-    public function addGroup(Group $group)
+    public function addGroup(ClassGroup $group)
     {
         if ($this->groups->contains($group)) {
             return;
@@ -213,7 +248,7 @@ class User
         $group->addUser($this);
     }
 
-    public function removeGroup(Group $group)
+    public function removeGroup(ClassGroup $group)
     {
         $this->groups->removeElement($group);
         $group->removeUser($this);

@@ -31,6 +31,11 @@ class Note
      */
     private $destination;
 
+    public function __toString()
+    {
+        return $this->message;
+    }
+
     /**
      * @return mixed
      */
